@@ -1,10 +1,8 @@
-const { Account } = require('../../models/account');
-const { encryptPassword, comparePassword } = require('../../utils/encryption');
+const { Account } = require('../models/Account');
+const { encryptPassword, comparePassword } = require('../utils/encryption');
 
-const addAccount = async (account) =>
-{
-    try
-    {
+const addAccount = async (account) => {
+    try {
         const encryptedPassword = encryptPassword(account.password);
 
         let temp = new Account({
@@ -14,28 +12,22 @@ const addAccount = async (account) =>
         temp.password = encryptedPassword;
         const addResult = await temp.save();
         return addResult;
-    } catch (e)
-    {
+    } catch (e) {
         console.log(e);
     }
 }
 
-const login = async ({ email, password }) =>
-{
-    try
-    {
+const login = async ({ email, password }) => {
+    try {
         const account = await Account.findOne({ email });
-        if (account)
-        {
+        if (account) {
             const compareResult = comparePassword(password, account.password);
-            if (compareResult)
-            {
+            if (compareResult) {
                 return account;
             } else return null;
         }
         return account;
-    } catch (e)
-    {
+    } catch (e) {
         console.log(e);
     }
 }
