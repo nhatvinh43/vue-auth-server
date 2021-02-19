@@ -11,7 +11,7 @@ jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 jwtOptions.secretOrKey = 'hichic';
 
 
-passport.use('register', new localStrategy({
+passport.use('signup', new localStrategy({
     usernameField: 'email',
     passwordField: 'password'
 },

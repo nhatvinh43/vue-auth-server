@@ -1,14 +1,14 @@
 const passport = require('passport');
 const router = require('express').Router();
 
-router.post('/register', (req, res, next) =>
+router.post('/signup', (req, res, next) =>
 {
-    passport.authenticate('register', { session: false }, (e, user, info) =>
+    passport.authenticate('signup', { session: false }, (e, user, info) =>
     {
         if (e)
         {
             console.log(e);
-            res.status(500).json({ message: "Error registering user" });
+            res.status(500).json({ message: "Error creating new user" });
         }
         if (info)
         {
